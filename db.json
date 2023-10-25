@@ -1,0 +1,191 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "employee": [
+    {
+      "employeeId": "1",
+      "firstName": "John",
+      "lastName": "smith",
+      "email": "john.smith@mail.com",
+      "mobile": "9089706010",
+      "address": "abc street",
+      "active": true,
+      "id": 1
+    },
+    {
+      "employeeId": "2",
+      "firstName": "Mark",
+      "lastName": "Stone",
+      "email": "mark.stone@mail.com",
+      "mobile": "8978675645",
+      "address": "xyz street",
+      "active": true,
+      "id": 2
+    },
+    {
+      "employeeId": "3",
+      "firstName": "Marry",
+      "lastName": "Jacob",
+      "email": "marry.jecob@gmail.com",
+      "mobile": "7867241510",
+      "address": "church gate",
+      "active": true,
+      "id": 3
+    },
+    {
+      "employeeId": "4",
+      "firstName": "Terry",
+      "lastName": "Medurest",
+      "email": "terry@gmail.com",
+      "mobile": "8978675641",
+      "address": "gbhct street",
+      "active": true,
+      "id": 4
+    },
+    {
+      "employeeId": "5",
+      "firstName": "Sunny",
+      "lastName": "duo",
+      "email": "sunny.duo@mail.com",
+      "mobile": "0090009090",
+      "address": "snip street",
+      "active": true,
+      "id": 5
+    },
+    {
+      "employeeId": "5",
+      "firstName": "Bald",
+      "lastName": "Eagle",
+      "email": "blad.Eagle@gmail.com",
+      "mobile": "8078601010",
+      "address": "horrow street",
+      "active": true,
+      "id": 6
+    },
+    {
+      "employeeId": "6",
+      "firstName": "Bells ",
+      "lastName": "Sparrow",
+      "email": "Sparrow@gmail.com",
+      "mobile": "0901012134",
+      "address": "ac street",
+      "active": true,
+      "id": 7
+    },
+    {
+      "employeeId": "7",
+      "firstName": "Rock ",
+      "lastName": "Pigeon",
+      "email": "RockPigeon@gmail.com",
+      "mobile": "1010202030",
+      "address": "ghdtdyghv",
+      "active": false,
+      "id": 8
+    },
+    {
+      "employeeId": "8",
+      "firstName": "Aberts ",
+      "lastName": "Towhee",
+      "email": "Aberts.Towhee@mal.com",
+      "mobile": "8070203030",
+      "address": "near chruch",
+      "active": true,
+      "id": 9
+    },
+    {
+      "employeeId": "9",
+      "firstName": "Canyon ",
+      "lastName": "Towhee",
+      "email": "Towhee@gmail.com",
+      "mobile": "1020304050",
+      "address": "hdjdhjdhj",
+      "active": true,
+      "id": 10
+    },
+    {
+      "employeeId": "10",
+      "firstName": "abc",
+      "lastName": "xyz",
+      "email": "abc.xyz@mail.com",
+      "mobile": "7867562410",
+      "address": "ahjhuuwyuyeuyiwey",
+      "active": true,
+      "id": 11
+    },
+    {
+      "employeeId": "11",
+      "firstName": "kdklsdjldj",
+      "lastName": "kjhkjh",
+      "email": "dkjshdkjahsdk@mail.com",
+      "mobile": "9001230401",
+      "address": "dmlkjljdioiodj",
+      "active": true,
+      "id": 12
+    },
+    {
+      "employeeId": "12",
+      "firstName": "ruiyri",
+      "lastName": "jhahh",
+      "email": "hdjhdsiu@mail.com",
+      "mobile": "9876543210",
+      "address": "dkddieiodkd",
+      "active": true,
+      "id": 13
+    },
+    {
+      "employeeId": "13",
+      "firstName": "hdkjhdkhd",
+      "lastName": "djhdkjhdjbk",
+      "email": "kdnkjndk@mail.com",
+      "mobile": "0000000010",
+      "address": "hjdjduiidjhkjheoho",
+      "active": true,
+      "id": 14
+    },
+    {
+      "employeeId": "14",
+      "firstName": "hhduidhihk",
+      "lastName": "skdkdk",
+      "email": "kjdk@mail.com",
+      "mobile": "8988787910",
+      "address": "sdkjhdkjhjkdhk",
+      "active": true,
+      "id": 15
+    },
+    {
+      "employeeId": "16",
+      "firstName": "jkjdnkjdn",
+      "lastName": "nksdnnds",
+      "email": "dnknd@mail.com",
+      "mobile": "9080102030",
+      "address": "jkjjllfkll",
+      "active": true,
+      "id": 16
+    },
+    {
+      "employeeId": "17",
+      "firstName": "test",
+      "lastName": "testing",
+      "email": "test@mail.com",
+      "mobile": "1234567890",
+      "address": "testing only",
+      "active": true,
+      "id": 17
+    }
+  ]
+}

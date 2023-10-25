@@ -1,0 +1,71 @@
+<mat-card class="example-card">
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <h2 class="header">Add Employee</h2>
+        </div>
+        <div class="row">
+            <mat-card-content>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                              <mat-label>Employee ID</mat-label>
+                              <input matInput formControlName="employeeId">
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                              <mat-label>First Name</mat-label>
+                              <input matInput formControlName="firstName">
+                                  <mat-error *ngIf="employeeForm.get('firstName')?.hasError('required')">First Name is required</mat-error>
+                                  <mat-error *ngIf="employeeForm.get('firstName')?.hasError('minlength')">First Name must be at least 3 characters long</mat-error>
+                              
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput formControlName="lastName">
+                            <mat-error *ngIf="employeeForm.get('lastName')?.hasError('required')">Last Name is required</mat-error>
+                          </mat-form-field>
+                        </div>
+                        <div class="col">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email">
+                            <mat-error *ngIf="employeeForm.get('email')?.hasError('required')">Email required</mat-error>
+                            <mat-error *ngIf="employeeForm.get('email')?.hasError('email')">Invalid Email</mat-error>
+                          </mat-form-field>
+                        </div>
+                    </div>
+                   
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Mobile No.</mat-label>
+                            <input matInput formControlName="mobile">
+                            <mat-error *ngIf="employeeForm.get('mobile')?.hasError('required')">Mobile no required</mat-error>
+                            <mat-error *ngIf="employeeForm.get('mobile')?.hasError('invalidMobile')">Invalid Mobile</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="address">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <mat-slide-toggle
+          class="example-margin"
+          [checked]="checked"
+          formControlName="active">
+       Employee Active
+      </mat-slide-toggle>
+                </div>
+                <button class="btn" mat-raised-button color="primary">Add Employee</button>
+            </mat-card-content>
+        </div>
+    </form>
+  </mat-card>
