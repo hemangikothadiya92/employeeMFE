@@ -13,21 +13,25 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
-import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: CreateEmployeeComponent,
-  },
+  { path: '', component: CreateEmployeeComponent },
+  // {
+  //   path: 'employee-details',
+  //   loadChildren: () =>
+  //     import('../employee-details/employee-details.module').then(
+  //       (m) => m.EmployeeDetailsModule
+  //     ),
+  // },
+  //D:\Hemangi\POC\Micro-Frontends-in-Angular\employeeMFE\src\app\employee-details\employee-details.module.ts
 ];
 
 @NgModule({
   declarations: [
     HomeComponent,
     CreateEmployeeComponent,
-    EmployeeDetailsComponent
+   //EmployeeDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -42,11 +42,13 @@ export class CreateEmployeeComponent implements OnInit {
 
   onSubmit() {
     if(this.employeeForm.valid) {
+      console.log('employe form submittion: ');
       this._empDataService.addEmployee(this.employeeForm.value)
           .subscribe({
             next: (value: any) => {
               console.log(`${value} added sucessfully`);
-              this._router.navigate(['/employee-details']);
+              // this._router.navigate(['/employee-details']);
+              this._router.navigateByUrl('employee-details');
             },
             error: (err: any) => {
               console.error(err);
