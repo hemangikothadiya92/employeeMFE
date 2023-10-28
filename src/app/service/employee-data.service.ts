@@ -19,4 +19,8 @@ export class EmployeeDataService {
       map((employee: any) => employee.filter((employee: any) => employee.active))
     )
   }
+
+  mapEmployeeProjectIds() {
+    
+  }
 }
