@@ -33,10 +33,11 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
        //"./homeModule": ".//src/app/home/home.module.ts",
-      "HomeModule": ".//src/app/home/home.module.ts",
+     // "HomeModule": ".//src/app/home/home.module.ts",
+        "EmployeeModule": ".//src/app/create-employee/employee.module.ts",
       "EmployeeDetailsModule": ".//src/app/employee-details/employee-details.module.ts"
       },
-
+      
       // For hosts (please adjust)
       // remotes: {
       //     "mfe1": "http://localhost:3000/remoteEntry.js",

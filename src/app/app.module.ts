@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { EmployeeDetailsModule } from './employee-details/employee-details.module';
+import { EmployeeModule } from './create-employee/employee.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { EmployeeDetailsModule } from './employee-details/employee-details.modul
   imports: [
     BrowserModule,
     //HomeModule,
-    //EmployeeDetailsModule,
+    EmployeeModule,
+    EmployeeDetailsModule,
     AppRoutingModule
   ],
   providers: [],

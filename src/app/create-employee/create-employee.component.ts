@@ -47,7 +47,6 @@ export class CreateEmployeeComponent implements OnInit {
           .subscribe({
             next: (value: any) => {
               console.log(`${value} added sucessfully`);
-              // this._router.navigate(['/employee-details']);
               this._router.navigateByUrl('employee-details');
             },
             error: (err: any) => {

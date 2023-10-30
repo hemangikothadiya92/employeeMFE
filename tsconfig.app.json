@@ -12,6 +12,7 @@
   "include": [
     "src/**/*.d.ts",
     "src/app/home/home.module.ts",
+    "src/app/create-employee/employee.module.ts",
     "src/app/employee-details/employee-details.module.ts"
   ]
 }

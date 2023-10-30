@@ -2,7 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
-import { CreateEmployeeComponent } from '../create-employee/create-employee.component';
+//mport { CreateEmployeeComponent } from '../create-employee/create-employee.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +16,8 @@ import { MatTableModule } from '@angular/material/table';
 
 
 const routes: Routes = [
-  { path: '', component: CreateEmployeeComponent },
+  //{ path: '', component: CreateEmployeeComponent },
+  { path: '', component: HomeComponent },
   // {
   //   path: 'employee-details',
   //   loadChildren: () =>
@@ -24,13 +25,13 @@ const routes: Routes = [
   //       (m) => m.EmployeeDetailsModule
   //     ),
   // },
-  //D:\Hemangi\POC\Micro-Frontends-in-Angular\employeeMFE\src\app\employee-details\employee-details.module.ts
+  
 ];
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CreateEmployeeComponent,
+   // CreateEmployeeComponent,
    //EmployeeDetailsComponent
   ],
   imports: [
