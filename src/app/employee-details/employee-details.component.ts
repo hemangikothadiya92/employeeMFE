@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeDataService } from '../service/employee-data.service';
+import { Employee } from '../employee.interface';
 
 @Component({
   selector: 'app-employee-details',
@@ -22,17 +23,21 @@ export class EmployeeDetailsComponent implements OnInit {
 
   constructor(private _employeeDataService: EmployeeDataService, private cdr: ChangeDetectorRef) {}
 
+  /**
+   * Angular Life cycle hook
+   */
   ngOnInit() {
     this._employeeDataService.getEmployeeData()
-      .subscribe((employeeData: any) => {
-        console.log('employee data: ', employeeData);
+      .subscribe((employeeData: Employee[]) => {
         this.employeeDataSource = new MatTableDataSource(employeeData);
       })
   }
 
-
+  /**
+   * Filter the table data
+   * @param event 
+   */
   applyFilter(event: Event) {
-    console.log('apply filter: ', event);
     const filterValue = (event.target as HTMLInputElement).value;
     this.employeeDataSource.filter = filterValue.trim().toLowerCase();
   }

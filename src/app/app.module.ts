@@ -13,7 +13,6 @@ import { EmployeeModule } from './create-employee/employee.module';
   ],
   imports: [
     BrowserModule,
-    //HomeModule,
     EmployeeModule,
     EmployeeDetailsModule,
     AppRoutingModule
