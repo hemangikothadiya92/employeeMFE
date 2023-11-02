@@ -24,10 +24,7 @@ export class EmployeeDataService {
    * @returns Observable
    */
   getEmployeeData():  Observable<Employee[]> {
-    return this._http.get<Employee[]>('http://localhost:3000/employee')
-    .pipe(
-      map((employee: any) => employee.filter((employee: any) => employee.active))
-    )
+    return this._http.get<Employee[]>('http://localhost:3000/employee');
   }
 
 }

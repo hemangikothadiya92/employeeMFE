@@ -13,6 +13,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeDataService } from '../service/employee-data.service';
+import {MatSelectModule} from '@angular/material/select';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule,
     MatTableModule,
+    MatSelectModule,
     RouterModule.forChild(routes),
   ],
   providers: [EmployeeDataService],

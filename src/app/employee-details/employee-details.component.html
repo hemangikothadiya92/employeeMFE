@@ -1,9 +1,20 @@
+
+<mat-form-field class="filter">
+  <mat-label>Choose an option</mat-label>
+  <mat-select [(ngModel)]="filterStatus">
+    <mat-option value="all">All</mat-option>
+    <mat-option value="active">Active</mat-option>
+    <mat-option value="inactive">Inactive</mat-option>
+  </mat-select>
+</mat-form-field>
 <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    <mat-label>Search</mat-label>
+    <input matInput [formControl]="searchControl" placeholder="Ex. ium" #input>
   </mat-form-field>
-  
-  <table mat-table [dataSource]="employeeDataSource" class="mat-elevation-z8">
+
+ 
+ 
+  <table mat-table [dataSource]="filteredEmployees" class="mat-elevation-z8">
   
     <!-- Position Column -->
     <ng-container matColumnDef="Employeeid">
