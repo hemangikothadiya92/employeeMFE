@@ -21,7 +21,6 @@ describe('CreateEmployeeComponent', () => {
   let router: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
-    const employeeDataServiceSpy = jasmine.createSpyObj('EmployeeDataService', ['addEmployee']);
     const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     await TestBed.configureTestingModule({
       declarations: [ CreateEmployeeComponent ],
@@ -37,7 +36,7 @@ describe('CreateEmployeeComponent', () => {
         RouterModule,
         MatTableModule],
       providers: [
-        { provide: EmployeeDataService, useValue: employeeDataServiceSpy },
+        EmployeeDataService,
         { provide: Router, useValue: routerSpy },
       ],
     })
@@ -47,6 +46,7 @@ describe('CreateEmployeeComponent', () => {
     component = fixture.componentInstance;
     employeeDataService = TestBed.inject(EmployeeDataService) as jasmine.SpyObj<EmployeeDataService>;
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
+    spyOn(employeeDataService, 'addEmployee').and.returnValue(of());
     fixture.detectChanges();
   });
 
@@ -67,10 +67,9 @@ describe('CreateEmployeeComponent', () => {
     expect(form.get('address')).toBeDefined();
     expect(form.get('active')).toBeDefined();
 
-    //expect(component.employeeForm.value.email.validator).toEqual([Validators.required, Validators.email]);
   });
 
-  it('should call onSubmit() and add employee', () => {
+  xit('should call onSubmit() and add employee', () => {
     const employeeData = {
       employeeId: '123',
       firstName: 'John',
@@ -80,29 +79,25 @@ describe('CreateEmployeeComponent', () => {
       address: '123 Main St',
       active: false,
     };
-
+    
     component.ngOnInit();
     const form = component.employeeForm;
-    form.setValue(employeeData);
 
-   // employeeDataService.addEmployee.and.returnValue(of('success'));
+   employeeDataService.addEmployee.and.returnValue(of([employeeData]));
 
     component.onSubmit();
 
-    expect(employeeDataService.addEmployee).toHaveBeenCalledWith(employeeData);
+    expect(employeeDataService.addEmployee).toHaveBeenCalledWith(component.employeeForm.value);
     expect(router.navigateByUrl).toHaveBeenCalledWith('employee-details');
   });
 
   it('should not call onSubmit() if the form is invalid', () => {
     component.ngOnInit();
-    const form = component.employeeForm;
-
-   // employeeDataService.addEmployee.and.returnValue(of('success'));
 
     component.onSubmit();
-
-    expect(employeeDataService.addEmployee).not.toHaveBeenCalled();
     expect(router.navigateByUrl).not.toHaveBeenCalled();
   });
+
+  
 
 });

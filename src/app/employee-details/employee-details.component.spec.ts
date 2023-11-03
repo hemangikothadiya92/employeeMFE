@@ -14,6 +14,9 @@ import { MatTableModule } from '@angular/material/table';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
+import { Employee } from '../employee.interface';
+import { By } from '@angular/platform-browser';
+import { MatSelectModule } from '@angular/material/select';
 
 describe('EmployeeDetailsComponent', () => {
   let component: EmployeeDetailsComponent;
@@ -33,6 +36,7 @@ describe('EmployeeDetailsComponent', () => {
         MatInputModule,
         HttpClientModule,
         RouterModule,
+        MatSelectModule,
         MatTableModule],
         providers: [
           { provide: EmployeeDataService, useValue: employeeDataServiceSpy },
@@ -48,11 +52,11 @@ describe('EmployeeDetailsComponent', () => {
   });
 
   it('should load employee data on ngOnInit', () => {
-    const mockEmployeeData = [
+    const mockEmployeeData: Employee[] = [
       {
-        Employeeid: 1,
-        firstname: 'John',
-        lastname: 'Doe',
+        employeeId: "1",
+        firstName: 'John',
+        lastName: 'Doe',
         email: 'john@example.com',
         mobile: '1234567890',
         address: '123 Main St',
@@ -66,19 +70,26 @@ describe('EmployeeDetailsComponent', () => {
     expect(component.employeeDataSource.data).toEqual(mockEmployeeData);
   });
 
-  it('should apply a filter to the table data', () => {
-    const mockEmployeeData = [
-      { Employeeid: 1, firstname: 'John', lastname: 'Doe', email: 'john@example.com', mobile: '1234567890', address: '123 Main St', active: true },
-    ];
+  it('should update the searchCriteria$ subject', () => {
+    const serachSpy = spyOn(component.searchCriteria$, 'next');
 
-    employeeDataService.getEmployeeData.and.returnValue(of(mockEmployeeData));
+    const mockSearch = "John";
 
-    component.ngOnInit();
+    component.searchCriteria = mockSearch;
+    component.search();
 
-    const filterValue = 'john';
-    component.applyFilter({ target: { value: filterValue } } as unknown as Event);
+    expect(serachSpy).toHaveBeenCalledWith(mockSearch);
+});
 
-    expect(component.employeeDataSource.filter).toBe(filterValue);
-  });
+it('should update the statusFilter$ subject', () => {
+  const statusFilterSpy = spyOn(component.statusFilter$, 'next');
+
+  const mockFilterValue = "all";
+
+  component.searchCriteria = mockFilterValue;
+  component.filterByStatus();
+
+  expect(statusFilterSpy).toHaveBeenCalledWith(mockFilterValue);
+});
 
 });
