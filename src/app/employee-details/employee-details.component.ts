@@ -2,7 +2,6 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeDataService } from '../service/employee-data.service';
 import { Employee } from '../employee.interface';
-import { FormControl } from '@angular/forms';
 import { BehaviorSubject, Subject, combineLatest, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs';
 
 @Component({
@@ -21,9 +20,10 @@ export class EmployeeDetailsComponent implements OnInit {
     'active',
   ];
   employeeDataSource = new MatTableDataSource<any>();
-  filterStatus = 'all';
-  employeeData: any[] = [];
-  searchControl = new FormControl('');
+  selectedStatusFilter = 'all';
+  searchCriteria = '';
+  statusFilter$ = new BehaviorSubject<string>('all');
+  searchCriteria$ = new BehaviorSubject<string>('');
 
   constructor(private _employeeDataService: EmployeeDataService, private cdr: ChangeDetectorRef) {}
 
@@ -31,31 +31,40 @@ export class EmployeeDetailsComponent implements OnInit {
    * Angular Life cycle hook
    */
   ngOnInit() {
-    this._employeeDataService.getEmployeeData()
-      .subscribe((employeeData: Employee[]) => {
-        this.employeeData = employeeData;
-        this.employeeDataSource = new MatTableDataSource(employeeData);
-      })
+    combineLatest([this.statusFilter$, this.searchCriteria$]).subscribe(([status, search]) => {
+      this._employeeDataService.getEmployeeData().pipe(
+        map((employees: Employee[]) => {
+          if (status === 'active') {
+            return employees.filter(emp => emp.active === true);
+          } else if (status === 'inactive') {
+            return employees.filter(emp => emp.active === false);
+          } else {
+            return employees;
+          }
+        }),
+        map(filteredEmployees => {
+          return filteredEmployees.filter(emp =>
+            emp.firstName.toLowerCase().includes(search.toLowerCase()) ||
+            emp.lastName.toLowerCase().includes(search.toLowerCase())
+          );
+        })
+      ).subscribe(filteredData => {
+        this.employeeDataSource.data = filteredData;
+      });
+    });
+  }
       
-  }
-
- 
   /**
-   * Filter the table data
-   * @param event 
+   * call when user search
    */
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    console.log('filter value', filterValue);
-    this.employeeDataSource.filter = filterValue.trim().toLowerCase();
+  search() {
+    this.searchCriteria$.next(this.searchCriteria);
   }
 
-  
-
-
-  get filteredEmployees() {
-    return this.employeeData.filter(
-     (employee: any) => (this.filterStatus == 'all' || this.filterStatus == 'active' && employee.active) ||
-     (this.filterStatus == 'inactive' && !employee.active))
+  /**
+   * call when user change the status
+   */
+  filterByStatus() {
+    this.statusFilter$.next(this.selectedStatusFilter);
   }
 }

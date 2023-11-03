@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeeDataService } from '../service/employee-data.service';
 import { Route, Router } from '@angular/router';
 import { Employee } from '../employee.interface';
@@ -25,8 +25,8 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.employeeForm = this.fb.group({
       employeeId: [''],
-      firstName: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.minLength(3), this.noWhitespaceValidator]],
+      lastName: ['', Validators.required, this.noWhitespaceValidator],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, this.mobileValidator()]],
       address: [''],
@@ -39,7 +39,7 @@ export class CreateEmployeeComponent implements OnInit {
    * @returns true if mobile number is valid
    */
   mobileValidator() {
-    return (control: any) => {
+    return (control: FormControl) => {
       const mobilePatter = /^\d{10}$/;
       if (control.value && !mobilePatter.test(control.value)) {
         return { invalidMobile: true };
@@ -47,6 +47,15 @@ export class CreateEmployeeComponent implements OnInit {
       return null;
     };
   }
+
+  /**
+   * whitespace validators for Firstname and Lastname
+   * @param control formcontrol
+   * @returns 
+   */
+ noWhitespaceValidator(control: FormControl) {
+    return (control.value || '').trim().length? null : { 'whitespace': true };       
+}
 
   /**
    * Submit the form navigate to 'employee-details'

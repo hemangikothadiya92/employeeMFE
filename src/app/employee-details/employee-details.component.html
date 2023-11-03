@@ -1,20 +1,20 @@
 
 <mat-form-field class="filter">
   <mat-label>Choose an option</mat-label>
-  <mat-select [(ngModel)]="filterStatus">
-    <mat-option value="all">All</mat-option>
-    <mat-option value="active">Active</mat-option>
-    <mat-option value="inactive">Inactive</mat-option>
+  <mat-select [(ngModel)]="selectedStatusFilter" (selectionChange)="filterByStatus()">
+    <mat-option [value]="'all'">All</mat-option>
+    <mat-option [value]="'active'">Active</mat-option>
+    <mat-option [value]="'inactive'">Inactive</mat-option>
   </mat-select>
 </mat-form-field>
 <mat-form-field>
     <mat-label>Search</mat-label>
-    <input matInput [formControl]="searchControl" placeholder="Ex. ium" #input>
+    <input matInput [(ngModel)]="searchCriteria" (input)="search()" placeholder="Ex. ium" #input>
   </mat-form-field>
 
  
  
-  <table mat-table [dataSource]="filteredEmployees" class="mat-elevation-z8">
+  <table mat-table [dataSource]="employeeDataSource" class="mat-elevation-z8">
   
     <!-- Position Column -->
     <ng-container matColumnDef="Employeeid">
@@ -63,7 +63,7 @@
   
     <!-- Row shown when there is no matching data. -->
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      <td class="mat-cell" colspan="4">No data matching "{{input.value}}"</td>
     </tr>
   </table>
   
